@@ -1,3 +1,5 @@
+package model;
+
 public class Card {
     //instance variables
     private int cardID;
@@ -39,5 +41,9 @@ public class Card {
 
     public void printCard(){
         System.out.println(this.cardID + "," + "Value: " + this.value + "," + this.suit);
+    }
+
+    public static List<String> getValidSuits(){
+        return Arrays.asList{"Sword", "Coin"
     }
 }

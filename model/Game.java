@@ -1,3 +1,5 @@
+package model;
+
 public class Game {
     //instance variables
     private int gameID;

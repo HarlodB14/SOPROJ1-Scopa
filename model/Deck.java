@@ -1,3 +1,7 @@
+package model;
+
+import model.Card;
+
 import java.util.ArrayList;
 
 public class Deck {
@@ -8,7 +12,8 @@ public class Deck {
         creatDeck();
     }
 
-    public void creatDeck() {
+    public void createDeck() {
+        List,St
         for(int i = 0; i < 40; i ++){
 
         }
