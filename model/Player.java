@@ -15,6 +15,8 @@ public class Player {
     private int scopas;
     private int sequenceNumber;
     private ArrayList<Card> swipedCards = new ArrayList<>();
+    private Deck deck = new Deck();
+    private GameTable gt = new GameTable();
 
     //constructor
     public Player(int playerid, String userName, String password) {
@@ -86,5 +88,10 @@ public class Player {
 
     public void setSwipedCards(ArrayList<Card> swipedCards) {
         this.swipedCards = swipedCards;
+    }
+
+    public void addToSwipedCards(int location){
+        swipedCards.add(gt.swipeCard(location));
+
     }
 }
