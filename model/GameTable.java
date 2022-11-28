@@ -21,6 +21,10 @@ public class GameTable {
         }
     }
 
+    public void addCardToGameTable(Card card){
+        gameTable.add(card);
+    }
+
     public Card swipeCard(int location, Deck deck){
         Card swipedCard = gameTable.get(location);
         gameTable.remove(location);
@@ -67,6 +71,12 @@ public class GameTable {
                 }
                 location++;
             }
+        }
+    }
+
+    public void printGameTable(){
+        for (Card cards : gameTable){
+            cards.printCard();
         }
     }
 

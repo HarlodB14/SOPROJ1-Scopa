@@ -27,7 +27,7 @@ public class Player {
         this.playerid = playerid;
         this.userName = userName;
         this.password = password;
-        Card[] playerHand = new Card[3];
+        playerHand = new Card[3];
     }
 
     //getters/setters
@@ -81,16 +81,26 @@ public class Player {
     }
 
     public void giveCardsToPlayer(Player player, Deck deck){
-        System.out.println("layer (" + player.getUserName() + "'s) hand:");
-        for (int i = 0; i < playerHand.length; i++){
-            playerHand[i] = deck.getTopCardFromDeck();
-            playerHand[i].printCard();
-        }
+        System.out.println("Player (" + player.getUserName() + "'s) hand:");
+    for (int i = 0; i < 3; i++){
+          playerHand[i] = deck.getTopCardFromDeck();
+          playerHand[i].printCard();
+      }
 
     }
 
+
+
     //Selects card and adds it on the table
-    public void playerMove(Card card){
+    public void playerMove(Player player, int CardLocation, GameTable gt){
+        Card selectedCard = playerHand[CardLocation];
+        playerHand[CardLocation] = null;
+        gt.addCardToGameTable(selectedCard);
+        System.out.println("GameTable:");
+        gt.printGameTable();
+        System.out.println("PlayerHand");
+        player.printPlayerHand();
+
 
     }
     //checks move and decide whether it has a duplicate value on the board already, if so, the cards get added to the swiped cards, otherwise the card gets added to the table
@@ -101,6 +111,14 @@ public class Player {
     public Card getSelectedCard() {
         Card selectedCard = null;
         return selectedCard;
+    }
+
+    public void printPlayerHand(){
+        for (Card cards: playerHand){
+            if (cards != null) {
+                cards.printCard();
+            }
+        }
     }
 
     public int getNumberOfPoints() {
