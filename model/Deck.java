@@ -26,16 +26,14 @@ public class Deck {
             }
         }
         Collections.shuffle(playdeck);
-        for (int i = 0; i < 40; i++){
-            playdeck.get(i).printCard();
+        for (Card deck: playdeck){
+            deck.printCard();
         }
     }
 
     public Card getTopCardFromDeck(){
         Card topCard = playdeck.get(0);
         playdeck.remove(0);
-        System.out.print("TopCard is: ");
-        topCard.printCard();
         return topCard;
     }
 

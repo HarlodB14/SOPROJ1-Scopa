@@ -14,15 +14,20 @@ public class Player {
     private String playStatus;
     private int scopas;
     private int sequenceNumber;
+
+    private int NumberOfPoints;
     private ArrayList<Card> swipedCards = new ArrayList<>();
-    private Deck deck = new Deck();
-    private GameTable gt = new GameTable();
+
+    private Card[] playerHand;
+
+
 
     //constructor
     public Player(int playerid, String userName, String password) {
         this.playerid = playerid;
         this.userName = userName;
         this.password = password;
+        Card[] playerHand = new Card[3];
     }
 
     //getters/setters
@@ -54,44 +59,51 @@ public class Player {
         return team;
     }
 
-    public void setTeam(int team) {
-        this.team = team;
-    }
-
     public String getPlayStatus() {
         return playStatus;
-    }
-
-    public void setPlayStatus(String playStatus) {
-        this.playStatus = playStatus;
     }
 
     public int getScopas() {
         return scopas;
     }
 
-    public void setScopas(int scopas) {
-        this.scopas = scopas;
-    }
-
     public int getSequenceNumber() {
         return sequenceNumber;
-    }
-
-    public void setSequenceNumber(int sequenceNumber) {
-        this.sequenceNumber = sequenceNumber;
     }
 
     public ArrayList<Card> getSwipedCards() {
         return swipedCards;
     }
 
-    public void setSwipedCards(ArrayList<Card> swipedCards) {
-        this.swipedCards = swipedCards;
+    public void addToSwipedCards(Player player, int location, Deck deck, GameTable gt){
+        swipedCards.add(gt.swipeCard(location, deck));
+
     }
 
-    public void addToSwipedCards(int location){
-        swipedCards.add(gt.swipeCard(location));
+    public void giveCardsToPlayer(Player player, Deck deck){
+        System.out.println("layer (" + player.getUserName() + "'s) hand:");
+        for (int i = 0; i < playerHand.length; i++){
+            playerHand[i] = deck.getTopCardFromDeck();
+            playerHand[i].printCard();
+        }
 
+    }
+
+    //Selects card and adds it on the table
+    public void playerMove(Card card){
+
+    }
+    //checks move and decide whether it has a duplicate value on the board already, if so, the cards get added to the swiped cards, otherwise the card gets added to the table
+    public void checkPlayerMove(){
+
+    }
+
+    public Card getSelectedCard() {
+        Card selectedCard = null;
+        return selectedCard;
+    }
+
+    public int getNumberOfPoints() {
+        return NumberOfPoints;
     }
 }
