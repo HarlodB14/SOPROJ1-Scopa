@@ -47,7 +47,4 @@ public class Card {
     }
 }
 
-//    public static List<String> getValidSuits(){
-//        return Arrays.asList{"Sword", "Coin"};
-//    }
-//}
+

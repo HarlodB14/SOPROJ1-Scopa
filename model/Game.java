@@ -7,9 +7,12 @@ public class Game {
     private String dateOfCreation;
     private Player[] players;
     private Player gameLeader;
+    private GameTable gt = new GameTable();
+    private Deck deck = new Deck();
+
 
     //constructor
-    public Game(int gameID, Player[] players, Player gameLeader) {
+    public Game(int gameID, Player gameLeader) {
         this.gameID = gameID;
         this.players = players;
         this.gameLeader = gameLeader;
@@ -56,4 +59,32 @@ public class Game {
     public void setGameLeader(Player gameLeader) {
         this.gameLeader = gameLeader;
     }
+
+    public void play(Player player) {
+//      while(checkForWinner() == false) {
+        deck.createDeck();
+        gt.createGameTable(deck);
+//        deck.printDeck();
+        player.giveCardsToPlayer(player, deck);
+        player.playerMove(player, 2, gt);
+
+//          for (int i = 0; i<6; i++){
+//              player1.giveCardsToPlayer(player1, deck);
+//              player2.giveCardsToPlayer(player2, deck);
+//              for (int j = 0; j < 3; j++) {
+//                  player1.playerMove(player1.getSelectedCard());
+//                  player1.updateUncalculatedScores();
+//                  player2.playerMove(player2.getSelectedCard());
+//                  player2.updateUnCalculatedScores();
+//              }
+//          }
+//          player1.updateScore();
+//          player2.updateScore();
+//          checkForWinner();
+//      }
+    }
+
+//    private boolean checkForWinner() {
+//    }
+
 }

@@ -5,8 +5,10 @@ import model.Card;
 public class Main {
 
     public static void main(String[] args) {
-        Card card = new Card(0,7,"Sword");
-        card.printCard();
+        Player player1 = new Player(1, "Mar!n", "yallah" );
+        Player player2 = new Player(2, "Tholo", "yallah" );
+        Game scopa = new Game(1, player2);
+        scopa.play(player1);
     }
 
 
