@@ -9,15 +9,15 @@ public class Deck {
 
     public Deck(){
         deck = new ArrayList<>();
-        creatDeck();
+//        creatDeck();
     }
 
-    public void createDeck() {
-        List,St
-        for(int i = 0; i < 40; i ++){
-
-        }
-    }
+//    public void createDeck() {
+//        List,St
+//        for(int i = 0; i < 40; i ++){
+//
+//        }
+//    }
 
 
 }

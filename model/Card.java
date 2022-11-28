@@ -1,5 +1,8 @@
 package model;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class Card {
     //instance variables
     private int cardID;
@@ -39,11 +42,12 @@ public class Card {
         this.suit = suit;
     }
 
-    public void printCard(){
+    public void printCard() {
         System.out.println(this.cardID + "," + "Value: " + this.value + "," + this.suit);
     }
-
-    public static List<String> getValidSuits(){
-        return Arrays.asList{"Sword", "Coin"
-    }
 }
+
+//    public static List<String> getValidSuits(){
+//        return Arrays.asList{"Sword", "Coin"};
+//    }
+//}
