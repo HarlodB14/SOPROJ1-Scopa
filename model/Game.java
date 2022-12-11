@@ -1,23 +1,28 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Game {
     //instance variables
     private int gameID;
     private String gameState;
     private String dateOfCreation;
-    private Player[] players;
-    private Player gameLeader;
-    private GameTable gt = new GameTable();
-    private Deck deck = new Deck();
+    private ArrayList<Player> players;
+    private GameTable gameTable;
+    private Deck deck;
+    private final int MAXPLAYERHANDLENGTH = 3;
 
 
     //constructor
-    public Game(int gameID, Player gameLeader) {
+    public Game(int gameID) {
         this.gameID = gameID;
-        this.players = players;
-        this.gameLeader = gameLeader;
-        players = new Player[4]; //now empty but will be filled with data from DB
+        players = new ArrayList<Player>();
+        players.add(new Player(1, "Harlod", "Ham", MAXPLAYERHANDLENGTH));
+        players.add(new Player(2, "Marijn", "Kaas", MAXPLAYERHANDLENGTH));
+        gameTable = new GameTable();
+        deck = new Deck();
     }
+
 
     //getters/setters
     public int getGameID() {
@@ -44,47 +49,32 @@ public class Game {
         this.dateOfCreation = dateOfCreation;
     }
 
-    public Player[] getPlayers() {
-        return players;
+
+    public void play() {
+        int i = 0;
+        boolean running = true;
+        while(running) {
+//            Player playerToDistribute = players.get(i);
+            distributeCards();
+
+        }
     }
 
-    public void setPlayers(Player[] players) {
-        this.players = players;
+    public void distributeCards(){
+        for (int i=0; i < MAXPLAYERHANDLENGTH; i++){
+            for(Player player : players){
+                Card topCard = deck.getTopCardFromDeck();
+                player.addCardToPlayerHand(topCard);
+            }
+        }
+        for (int y = 0; y < 4; y++) {
+            gameTable.addCardToGameTable(deck.getTopCardFromDeck());
+        }
+        for(Player player: players){
+            for (int i = 0; i < MAXPLAYERHANDLENGTH; i++) {
+                System.out.println(player.getUserName() + ": " + player.getPlayerHandCardString(i));
+            }
+        }
+//        gameTable.printGameTable();
     }
-
-    public Player getGameLeader() {
-        return gameLeader;
-    }
-
-    public void setGameLeader(Player gameLeader) {
-        this.gameLeader = gameLeader;
-    }
-
-    public void play(Player player) {
-//      while(checkForWinner() == false) {
-        deck.createDeck();
-        gt.createGameTable(deck);
-//        deck.printDeck();
-        player.giveCardsToPlayer(player, deck);
-        player.playerMove(player, 2, gt);
-
-//          for (int i = 0; i<6; i++){
-//              player1.giveCardsToPlayer(player1, deck);
-//              player2.giveCardsToPlayer(player2, deck);
-//              for (int j = 0; j < 3; j++) {
-//                  player1.playerMove(player1.getSelectedCard());
-//                  player1.updateUncalculatedScores();
-//                  player2.playerMove(player2.getSelectedCard());
-//                  player2.updateUnCalculatedScores();
-//              }
-//          }
-//          player1.updateScore();
-//          player2.updateScore();
-//          checkForWinner();
-//      }
-    }
-
-//    private boolean checkForWinner() {
-//    }
-
 }

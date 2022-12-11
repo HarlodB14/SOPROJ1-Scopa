@@ -14,6 +14,8 @@ public class Player {
     private String playStatus;
     private int scopas;
     private int sequenceNumber;
+    private final int MAXPLAYERHANDLENGTH = 3;
+
 
     private int NumberOfPoints;
     private ArrayList<Card> swipedCards = new ArrayList<>();
@@ -21,13 +23,12 @@ public class Player {
     private Card[] playerHand;
 
 
-
     //constructor
-    public Player(int playerid, String userName, String password) {
+    public Player(int playerid, String userName, String password, int playerHandSize) {
         this.playerid = playerid;
         this.userName = userName;
         this.password = password;
-        playerHand = new Card[3];
+        playerHand = new Card[playerHandSize];
     }
 
     //getters/setters
@@ -75,24 +76,12 @@ public class Player {
         return swipedCards;
     }
 
-    public void addToSwipedCards(Player player, int location, Deck deck, GameTable gt){
+    public void addToSwipedCards(Player player, int location, Deck deck, GameTable gt) {
         swipedCards.add(gt.swipeCard(location, deck));
 
     }
-
-    public void giveCardsToPlayer(Player player, Deck deck){
-        System.out.println("Player (" + player.getUserName() + "'s) hand:");
-    for (int i = 0; i < 3; i++){
-          playerHand[i] = deck.getTopCardFromDeck();
-          playerHand[i].printCard();
-      }
-
-    }
-
-
-
     //Selects card and adds it on the table
-    public void playerMove(Player player, int CardLocation, GameTable gt){
+    public void playerMove(Player player, int CardLocation, GameTable gt) {
         Card selectedCard = playerHand[CardLocation];
         playerHand[CardLocation] = null;
         gt.addCardToGameTable(selectedCard);
@@ -104,24 +93,39 @@ public class Player {
 
     }
     //checks move and decide whether it has a duplicate value on the board already, if so, the cards get added to the swiped cards, otherwise the card gets added to the table
-    public void checkPlayerMove(){
+    public void checkPlayerMove() {
 
     }
-
-    public Card getSelectedCard() {
-        Card selectedCard = null;
-        return selectedCard;
-    }
-
-    public void printPlayerHand(){
-        for (Card cards: playerHand){
+    public void printPlayerHand() {
+        for (Card cards : playerHand) {
             if (cards != null) {
                 cards.printCard();
             }
         }
     }
 
+    public Card getPlayerCard(int location){
+        return playerHand[location];
+    }
+
+    public String getPlayerHandCardString(int location) {
+        return playerHand[location].getValue() + playerHand[location].getSuit();
+    }
+
+
+    public void addCardToPlayerHand(Card card){
+        for (int i = 0; i < playerHand.length; i++){
+            if (playerHand[i] == null){
+                playerHand[i] = card;
+                return;
+            }
+        }
+    }
+
+
     public int getNumberOfPoints() {
         return NumberOfPoints;
     }
+
+
 }

@@ -1,5 +1,7 @@
 package View;
 
+import Controller.GameController;
+import Controller.HandController;
 import javafx.geometry.Pos;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -14,18 +16,24 @@ public class GamePane extends BorderPane {
 
     private HBox scoreTable;
     private HBox cardTableView;
-    private HBox handView;
+    private HandPane handPane;
+    private HandController handController;
+    private Text cardInfo1;
+    private Text cardInfo2;
+    private Text cardInfo3;
 
-    public GamePane() {
+    public GamePane(GameController gameController) {
+        this.handController = handController;
         scoreTable = new HBox();
         createScoreTable();
         cardTableView = new HBox();
+//        cardInfo1 = new Text(handController.getCard1());
+//        cardInfo2 = new Text(handController.getCard2());
+//        cardInfo3 = new Text(handController.getCard3());
+        sethandView();
         createGameTableView();
-        handView = new HBox();
-        createHandView();
         this.setBackground(new Background(new BackgroundFill(Color.BEIGE, null, null)));
         setAlignment(scoreTable, Pos.CENTER);
-
     }
 
     public void createScoreTable() {
@@ -58,18 +66,10 @@ public class GamePane extends BorderPane {
         this.setCenter(cardTableView);
     }
 
-    public void createHandView() {
-        Rectangle card1 = new Rectangle(200, 250);
-        Rectangle card2 = new Rectangle(200, 250);
-        Rectangle card3 = new Rectangle(200, 250);
-
-        card1.setFill(Color.SANDYBROWN);
-        card2.setFill(Color.SANDYBROWN);
-        card3.setFill(Color.SANDYBROWN);
-        handView.getChildren().addAll(card1, card2, card3);
-        handView.setSpacing(10);
-        handView.setAlignment(Pos.CENTER);
-        this.setBottom(handView);
+    public void sethandView(){
+        handPane = new HandPane(handController);
+        this.setBottom(handPane);
     }
+
 
 }

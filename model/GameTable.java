@@ -13,12 +13,8 @@ public class GameTable {
         gameTable = new ArrayList<>();
     }
 
-    public void createGameTable(Deck deck){
-        System.out.println("Cards on the table are:");
-        for(int i = 0; i < 4; i++ ){
-            gameTable.add(deck.getTopCardFromDeck());
-            gameTable.get(i).printCard();
-        }
+    public void createGameTable(Card card){
+        gameTable.add(card);
     }
 
     public void addCardToGameTable(Card card){

@@ -8,13 +8,17 @@ import java.util.Collections;
 public class Deck {
     private ArrayList<Card> playdeck;
 
-    public Deck(){
+    public Deck() {
         playdeck = new ArrayList<>();
+        createDeck();
+//         printDeck();
     }
+
+
 
     public void createDeck() {
         int k = 0;
-        String[] suits= new String[4];
+        String[] suits = new String[4];
         suits[0] = "Coin";
         suits[1] = "Club";
         suits[2] = "Sword";
@@ -26,19 +30,19 @@ public class Deck {
             }
         }
         Collections.shuffle(playdeck);
-        for (Card deck: playdeck){
+        for (Card deck : playdeck) {
             deck.printCard();
         }
     }
 
-    public Card getTopCardFromDeck(){
+    public Card getTopCardFromDeck() {
         Card topCard = playdeck.get(0);
         playdeck.remove(0);
         return topCard;
     }
 
-    public void printDeck(){
-        for(Card deck: playdeck){
+    public void printDeck() {
+        for (Card deck : playdeck) {
             deck.printCard();
         }
     }

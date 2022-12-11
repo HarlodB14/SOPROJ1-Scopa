@@ -1,15 +1,26 @@
 package model;
 
+import View.GameScene;
+import javafx.application.Application;
+import javafx.stage.Stage;
 import model.Card;
 
 public class Main {
 
     public static void main(String[] args) {
-        Player player1 = new Player(1, "Mar!n", "yallah" );
-        Player player2 = new Player(2, "Tholo", "yallah" );
-        Game scopa = new Game(1, player2);
-        scopa.play(player1);
+//        launch(args);
+        Game scopa = new Game(0);
+        scopa.play();
     }
 
 
+
+//    @Override
+//    public void start(Stage stage) throws Exception {
+//        GameScene gameScene = new GameScene();
+//
+//        stage.setScene(gameScene);
+//        stage.show();
+
+//    }
 }
