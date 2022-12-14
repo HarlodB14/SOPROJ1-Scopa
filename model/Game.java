@@ -1,5 +1,7 @@
 package model;
 
+import controller.HandController;
+
 import java.util.ArrayList;
 
 public class Game {
@@ -11,6 +13,7 @@ public class Game {
     private GameTable gameTable;
     private Deck deck;
     private final int MAXPLAYERHANDLENGTH = 3;
+    private HandController handController;
 
 
     //constructor
@@ -18,12 +21,19 @@ public class Game {
         this.gameID = gameID;
         players = new ArrayList<Player>();
         players.add(new Player(1, "Harlod", "Ham", MAXPLAYERHANDLENGTH));
-        players.add(new Player(2, "Marijn", "Kaas", MAXPLAYERHANDLENGTH));
+//        players.add(new Player(2, "Marijn", "Kaas", MAXPLAYERHANDLENGTH));
+        handController = new HandController(players.get(0));
         gameTable = new GameTable();
         deck = new Deck();
+        play();
     }
 
-
+    public Player getPlayer(int index){
+        return players.get(index);
+    }
+    public GameTable getGameTable(){
+        return  gameTable;
+    }
     //getters/setters
     public int getGameID() {
         return gameID;
@@ -53,11 +63,11 @@ public class Game {
     public void play() {
         int i = 0;
         boolean running = true;
-        while(running) {
+//        while(running) {
 //            Player playerToDistribute = players.get(i);
             distributeCards();
 
-        }
+//        }
     }
 
     public void distributeCards(){
@@ -70,11 +80,5 @@ public class Game {
         for (int y = 0; y < 4; y++) {
             gameTable.addCardToGameTable(deck.getTopCardFromDeck());
         }
-        for(Player player: players){
-            for (int i = 0; i < MAXPLAYERHANDLENGTH; i++) {
-                System.out.println(player.getUserName() + ": " + player.getPlayerHandCardString(i));
-            }
-        }
-//        gameTable.printGameTable();
     }
 }

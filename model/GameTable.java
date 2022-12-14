@@ -7,7 +7,6 @@ public class GameTable {
     int locationOfDuplicateCard;
     int locationOfSecondDuplicateCard;
     int locationOfThirdDuplicateCard;
-//    private Deck deck = new Deck();
 
     public GameTable(){
         gameTable = new ArrayList<>();
@@ -25,6 +24,10 @@ public class GameTable {
         Card swipedCard = gameTable.get(location);
         gameTable.remove(location);
         return swipedCard;
+    }
+
+    public Card returnCard(int index){
+        return gameTable.get(index);
     }
 
     public void CheckGameTable(Card card){
@@ -76,9 +79,6 @@ public class GameTable {
         }
     }
 
-//    public void getCardFromGameTable(int location){
-//        gameTable[location]
-//    }
 
 
 

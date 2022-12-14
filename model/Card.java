@@ -21,25 +21,16 @@ public class Card {
         return cardID;
     }
 
-    public void setCardID(int cardID) {
-        this.cardID = cardID;
-    }
-
-
     public int getValue() {
         return value;
-    }
-
-    public void setValue(int value) {
-        this.value = value;
     }
 
     public String getSuit() {
         return suit;
     }
 
-    public void setSuit(String suit) {
-        this.suit = suit;
+    public String getCardInfo(){
+        return getValue() + " " + getSuit();
     }
 
     public void printCard() {
