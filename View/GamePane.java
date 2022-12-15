@@ -1,6 +1,8 @@
 package View;
 
+
 import controller.GameController;
+import controller.GameTableController;
 import controller.HandController;
 import controller.HandController;
 import javafx.geometry.Pos;
@@ -31,9 +33,11 @@ public class GamePane extends BorderPane {
     private Label cardInfo2;
     private Label cardInfo3;
     private Label cardInfo4;
+    private GameTableController gameTableController;
 
-    public GamePane(GameController gameController,HandController handController) {
+    public GamePane(GameController gameController,HandController handController, GameTableController gtc) {
         gameController = gameController;
+        gameTableController = gtc;
         cardInfo1 = new Label(gameController.getCardFromGameTable(0));
         cardInfo2 = new Label(gameController.getCardFromGameTable(1));
         cardInfo3 = new Label(gameController.getCardFromGameTable(2));
@@ -50,6 +54,10 @@ public class GamePane extends BorderPane {
         setAlignment(scoreTable, Pos.CENTER);
     }
 
+    public Label createCardInfo(int pos){
+        return new Label(gameTableController.getCardInfoFromGameTable(pos));
+    }
+
     public void createScoreTable() {
         Text carta = new Text("Carta: 0");
         Text denari = new Text("Denari: 0");
@@ -64,35 +72,36 @@ public class GamePane extends BorderPane {
     }
 
     public void createGameTableView() {
+
         gameCard1 = new HBox();
-        gameCard1.setPrefSize(200, 250);
+        gameCard1.setPrefSize(100, 125);
         gameCard1.setBackground(new Background(new BackgroundFill(Color.SANDYBROWN, null, null)));
-        gameCard1.getChildren().add(cardInfo1);
+        gameCard1.getChildren().add(createCardInfo(0));
 
         gameCard2 = new HBox();
-        gameCard2.setPrefSize(200, 250);
+        gameCard2.setPrefSize(100, 125);
         gameCard2.setBackground(new Background(new BackgroundFill(Color.SANDYBROWN, null, null)));
-        gameCard2.getChildren().add(cardInfo2);
+        gameCard2.getChildren().add(createCardInfo(1));
 
         gameCard3 = new HBox();
-        gameCard3.setPrefSize(200, 250);
+        gameCard3.setPrefSize(100, 125);
         gameCard3.setBackground(new Background(new BackgroundFill(Color.SANDYBROWN, null, null)));
-        gameCard3.getChildren().add(cardInfo3);
+        gameCard3.getChildren().add(createCardInfo(2));
 
         gameCard4 = new HBox();
-        gameCard4.setPrefSize(200, 250);
+        gameCard4.setPrefSize(100, 125);
         gameCard4.setBackground(new Background(new BackgroundFill(Color.SANDYBROWN, null, null)));
-        gameCard4.getChildren().add(cardInfo4);
+        gameCard4.getChildren().add(createCardInfo(3));
 
 
 
         cardTableView.getChildren().addAll(gameCard1, gameCard2, gameCard3, gameCard4);
-        cardTableView.setSpacing(20);
+        cardTableView.setSpacing(10);
         cardTableView.setAlignment(Pos.CENTER);
-        cardTableView.setPrefHeight(150);
-        cardTableView.setMaxHeight(250);
+        cardTableView.setMaxSize(350,100);
         this.setCenter(cardTableView);
     }
+
 
 
 }

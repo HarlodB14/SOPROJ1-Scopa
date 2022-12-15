@@ -19,7 +19,7 @@ import model.Player;
 
 public class HandPane extends HBox {
 
-    private HBox tabelView = new HBox();
+    private HBox tableView = new HBox();
     private HBox card1;
     private HBox card2;
     private HBox card3;
@@ -30,43 +30,44 @@ public class HandPane extends HBox {
 
 
     public HandPane(HandController handController) {
-        cardInfo1 = new Label(handController.getCardInfoFromHand(0));
-        cardInfo2 = new Label(handController.getCardInfoFromHand(1));
-        cardInfo3 = new Label(handController.getCardInfoFromHand(2));
         this.handController = handController;
         createHandView();
 
     }
 
+    public Label createCardInfo(int pos){
+        return new Label(handController.getCardInfoFromHand(pos));
+    }
+
     public void createHandView() {
         card1 = new HBox();
-        card1.setPrefSize(200, 250);
+        card1.setPrefSize(100, 150);
         card1.setBackground(new Background(new BackgroundFill(Color.SANDYBROWN, null, null)));
-        card1.getChildren().add(cardInfo1);
-        card1.setOnMouseClicked(e -> removeCard(0));
+        card1.getChildren().add(createCardInfo(0));
+        card1.setOnMouseClicked(e -> doOnClicked(0, card1));
 
         card2 = new HBox();
-        card2.setPrefSize(200, 250);
+        card2.setPrefSize(100, 150);
         card2.setBackground(new Background(new BackgroundFill(Color.SANDYBROWN, null, null)));
-        card2.getChildren().add(cardInfo2);
-        card2.setOnMouseClicked(e -> removeCard(1));
+        card2.getChildren().add(createCardInfo(1));
+        card1.setOnMouseClicked(e -> doOnClicked(1, card2));
 
         card3 = new HBox();
-        card3.setPrefSize(200, 250);
+        card3.setPrefSize(100, 150);
         card3.setBackground(new Background(new BackgroundFill(Color.SANDYBROWN, null, null)));
-        card3.getChildren().add(cardInfo3);
-        card3.setOnMouseClicked(e -> removeCard(2));
+        card3.getChildren().add(createCardInfo(2));
+        card1.setOnMouseClicked(e -> doOnClicked(2, card3));
 
-        tabelView.getChildren().addAll(card1, card2, card3);
-        tabelView.setSpacing(20);
-        tabelView.setAlignment(Pos.CENTER);
-        this.getChildren().add(tabelView);
+        tableView.getChildren().addAll(card1, card2, card3);
+        tableView.setSpacing(20);
+        tableView.setAlignment(Pos.CENTER);
+        this.getChildren().add(tableView);
         this.setAlignment(Pos.CENTER);
     }
 
-    public void removeCard(int i){
-        handController.layCard(i);
-        System.out.println("removed" + handController.getCardInfoFromHand(i));
+    public void doOnClicked(int i, HBox Card){
+        handController.layCard(handController.getCardFromHand(i));
+        tableView.getChildren().remove(Card);
+        handController.setCardHBox(Card);
     }
-
 }

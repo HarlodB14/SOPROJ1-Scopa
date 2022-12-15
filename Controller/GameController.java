@@ -13,8 +13,14 @@ public class GameController {
     private GameTableController gameTableController;
     private GameTable gt;
 
-    public GameController(GameTable gameTable){
+    public GameController(GameTable gameTable, HandController handcontroller, GameTableController gametablecontroller){
+        handController = handcontroller;
+        gameTableController = gametablecontroller;
         gt = gameTable;
+    }
+
+    public void passHBoxCard(){
+        gameTableController.setHBox(handController.getCardHbox());
     }
 
     public String getCardFromGameTable(int pos){

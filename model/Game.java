@@ -20,7 +20,7 @@ public class Game {
     public Game(int gameID) {
         this.gameID = gameID;
         players = new ArrayList<Player>();
-        players.add(new Player(1, "Harlod", "Ham", MAXPLAYERHANDLENGTH));
+        players.add(new Player(1, "Harlod", "Ham"));
 //        players.add(new Player(2, "Marijn", "Kaas", MAXPLAYERHANDLENGTH));
         handController = new HandController(players.get(0));
         gameTable = new GameTable();
@@ -66,6 +66,8 @@ public class Game {
 //        while(running) {
 //            Player playerToDistribute = players.get(i);
             distributeCards();
+            getPlayer(0).printPlayerHand();
+            gameTable.printGameTable();
 
 //        }
     }

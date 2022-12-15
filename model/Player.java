@@ -21,15 +21,15 @@ public class Player {
     private int NumberOfPoints;
     private ArrayList<Card> swipedCards = new ArrayList<>();
 
-    private ArrayList<Card> playerHand;
+    private Card[] playerHand;
 
 
     //constructor
-    public Player(int playerid, String userName, String password, int playerHandSize) {
+    public Player(int playerid, String userName, String password) {
         this.playerid = playerid;
         this.userName = userName;
         this.password = password;
-        playerHand = new ArrayList<Card>();
+        playerHand = new Card[MAXPLAYERHANDLENGTH];
     }
 
     //getters/setters
@@ -82,18 +82,6 @@ public class Player {
 
     }
 
-    //Selects card and adds it on the table
-    public void playerMove(Player player, int CardLocation, GameTable gt) {
-        Card selectedCard = playerHand.get(CardLocation);
-        playerHand.set(CardLocation, null);
-        gt.addCardToGameTable(selectedCard);
-        System.out.println("GameTable:");
-        gt.printGameTable();
-        System.out.println("PlayerHand");
-        player.printPlayerHand();
-
-
-    }
 
     //checks move and decide whether it has a duplicate value on the board already, if so, the cards get added to the swiped cards, otherwise the card gets added to the table
 //    public void checkPlayerMove() {
@@ -108,20 +96,32 @@ public class Player {
     }
 
     public Card getPlayerCard(int location) {
-        return playerHand.get(location);
+        return playerHand[location];
     }
 
     public void removeCard(Card card) {
-        playerHand.remove(card);
+        for (int i = 0; i < playerHand.length; i++) {
+            if(playerHand[i] == card){
+                playerHand[i] = null;
+        }
+            
+        }
+                
     }
 
     public String getPlayerHandCardString(int location) {
-        return playerHand.get(location).getValue() + " " + playerHand.get(location).getSuit();
+        return playerHand[location].getValue() + " " + playerHand[location].getSuit();
     }
 
 
     public void addCardToPlayerHand(Card card) {
-        playerHand.add(card);
+        for (int i = 0; i < playerHand.length; i++) {
+            if(playerHand[i] == null){
+                playerHand[i] = card;
+                return;
+            }
+
+        }
     }
 
 

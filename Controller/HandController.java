@@ -1,6 +1,8 @@
 package controller;
 
 import View.HandPane;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.scene.layout.HBox;
 import model.Card;
 import model.Message;
 import model.Player;
@@ -10,9 +12,11 @@ public class HandController {
     private HandPane handPane;
     private Player player;
     private GameController gameController;
+    private HBox card;
 
 
     public HandController(Player player1) {
+        card = new HBox();
         player = player1;
 
     }
@@ -25,9 +29,17 @@ public class HandController {
         return player.getPlayerCard(pos);
   }
 
-  public void layCard(int pos){
+  public void layCard(Card card){
         Card selectedCard = player.getPlayerCard(0);
         player.removeCard(selectedCard);
+  }
+
+  public void setCardHBox(HBox Card){
+        card = Card;
+  }
+  
+  public HBox getCardHbox(){
+        return this.card;
   }
 
 
